@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #FF9A8B, #FF6F61, #FFB88C, #FF6F61);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+            position: relative;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 35%, 100% 80%, 50% 100%, 0% 80%, 0% 35%);
+            animation: float-hearts 4s ease-in infinite;
+            animation-delay: calc(-0.2s * var(--i));
+            left: calc(var(--i) * 5%);
+        }
+
+        .heart:nth-child(even) {
+            background-color: pink;
+        }
+
+        @keyframes float-hearts {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0.8); opacity: 0; }
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .styled-button {
+            background: linear-gradient(90deg, #007BFF, #00C6FF);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .styled-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 15px 25px rgba(0, 198, 255, 0.5);
+        }
+
+        .message-section {
+            height: 100vh;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            margin: auto;
+            animation: fadeIn 1s ease;
+        }
+
+        .message-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .message-card p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .message-card h2 { font-size: 2rem; }
+            .message-card p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Happy Birthday, Bestie!</h1>
+        <p>Today is your day to shine! Let's celebrate you and all the amazing things you bring to the world!</p>
+        <button class="styled-button" id="messageButton">See Your Special Message</button>
+    </div>
+
+    <div class="message-section" id="messageSection">
+        <div class="message-card">
+            <h2>You’re Amazing!</h2>
+            <p>
+                Dear friend, you’re one of the brightest lights in my life. 
+                I hope your birthday is filled with love, and I'm sorry for all the troubles I've caused to u, I know this might not be one of ur best birthdays because of the funeral, but I'm always here ... for you
+            </p>
+            <button class="styled-button" id="surpriseButton">Open Your Surprise</button>
+        </div>
+    </div>
+
+    <script>
+        const messageButton = document.getElementById("messageButton");
+        const messageSection = document.getElementById("messageSection");
+        const surpriseButton = document.getElementById("surpriseButton");
+
+        // Show the message section
+        messageButton.addEventListener("click", () => {
+            messageSection.style.display = "flex";
+
+            setTimeout(() => {
+                window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+            }, 100);
+
+            // Add floating hearts
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.setProperty("--i", i);
+                document.body.appendChild(heart);
+
+                // Remove hearts after 5 seconds
+                setTimeout(() => heart.remove(), 5000);
+            }
+        });
+
+        // Surprise action
+        surpriseButton.addEventListener("click", () => {
+            alert("🎉 Surprise! You’re the most amazing friend anyone could ask for! the real suprise is on the second link I'll send, BOOM🎁");
+        });
+    </script>
+</body>
+</html>
